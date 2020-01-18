@@ -8,33 +8,33 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
   <link rel="shortcut icon" href="https://t4k4.github.io//assets/images/Image_213449.jpg" type="image/png" />
 
-  <title>ISITDTU CTF 2018 WP</title>
+  <title>KKNPP 2019</title>
 
-  <meta name="description" content="Cool">
+  <meta name="description" content="分析时间：2019年11月">
 
   <meta property="og:site_name" content="TAKA" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="ISITDTU CTF 2018 WP" />
+  <meta property="og:title" content="KKNPP 2019" />
   <meta property="og:description" content="Just wish me a brand new start of the next few years." />
-  <meta property="og:url" content="https://t4k4.github.io//ISITDTU-CTF-2018-Reverse-writeup-part" />
+  <meta property="og:url" content="https://t4k4.github.io//kknpp-2019" />
   <meta property="og:image" content="https://t4k4.github.io//assets/images/radhakrishna.jpg" />
   <meta property="article:publisher" content="https://www.facebook.com/facebook" />
-  <meta property="article:tag" content="CTF" />
+  <meta property="article:tag" content="APT" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ISITDTU CTF 2018 WP" />
+  <meta name="twitter:title" content="KKNPP 2019" />
   <meta name="twitter:description" content="Just wish me a brand new start of the next few years." />
   <meta name="twitter:url" content="https://t4k4.github.io//" />
   <meta name="twitter:image" content="https://t4k4.github.io//assets/images/radhakrishna.jpg" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="TAKA" />
   <meta name="twitter:label2" content="Filed under" />
-  <meta name="twitter:data2" content="CTF" />
+  <meta name="twitter:data2" content="APT" />
   <meta name="twitter:site" content="@twitter" />
   <meta name="twitter:creator" content="@twitter" />
   <meta property="og:image:width" content="2000" />
   <meta property="og:image:height" content="666" />
 
-  <link rel="canonical" href="https://t4k4.github.io//ISITDTU-CTF-2018-Reverse-writeup-part" />
+  <link rel="canonical" href="https://t4k4.github.io//kknpp-2019" />
   <link rel="alternate" type="application/rss+xml" title="TAKA" href="https://t4k4.github.io//feed.xml">
 
   <script type="application/ld+json">
@@ -42,11 +42,11 @@
 {
   "@context": "http://schema.org",
   "@type": "NewsArticle",
-  "mainEntityOfPage": "https://t4k4.github.io//ISITDTU-CTF-2018-Reverse-writeup-part",
-  "headline": "ISITDTU CTF 2018 WP",
-  "datePublished": "2020-01-18T22:27:34+00:00",
-  "dateModified": "2020-01-18T22:27:34+00:00",
-  "description": "Cool",
+  "mainEntityOfPage": "https://t4k4.github.io//kknpp-2019",
+  "headline": "KKNPP 2019",
+  "datePublished": "2020-01-19T00:14:34+00:00",
+  "dateModified": "2020-01-19T00:14:34+00:00",
+  "description": "分析时间：2019年11月",
   "author": {
     "@type": "Person",
     "name": ""
@@ -2622,165 +2622,196 @@ body > figure > figcaption > header > h2 {
           <span class="ampstart-subtitle block px3 pt2 mb2">
                         
                             
-                               <a href='/tags/#CTF'>Ctf</a>,
-                            
-                        
-                            
-                               <a href='/tags/#reverse engineering'>Reverse engineering</a>,
-                            
-                        
-                            
-                               <a href='/tags/#WriteUp'>Writeup</a>
+                               <a href='/tags/#APT'>Apt</a>
                             
                         
           </span>
           
-          <h1 class="mb1 px3">ISITDTU CTF 2018 WP</h1>
+          <h1 class="mb1 px3">KKNPP 2019</h1>
 
           <address class="ampstart-byline clearfix mb4 px3 h5">
-            <time class="ampstart-byline-pubdate block bold my1" datetime="18 January 2020">18 January 2020</time>
+            <time class="ampstart-byline-pubdate block bold my1" datetime="19 January 2020">19 January 2020</time>
           </address>
         </header>
 
   
 
     <div class="px3 mb4">
-      <h4 id="cool">Cool</h4>
+      <p>分析时间：2019年11月</p>
 
-<blockquote>
-  <p>(3rd) ELF 64-bit executable</p>
-</blockquote>
-
-<p>运行./cool提示缺少共享库
-于是直接丢到IDA里
-可以找到几个关键字符串：
-<code class="highlighter-rouge">"Give me your key: "</code>
-<code class="highlighter-rouge">"Wrong~"</code>
-<code class="highlighter-rouge">"Congratulation~~~"</code>
-<code class="highlighter-rouge">"Your flag: ISITDTU{ %s }"</code>
-根据字符串可以找到main函数：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>首先读取输入，存入地址602100
-判断字符串长度是否为28
-以4字符为一组，计算MD5
-    "ECFD4245812B86AB2A878CA8CB1200F9" —— "fl4g"
-    "88E3E2EDB64D39698A2CC0A08588B5FD" —— "_i5_"
-    "BBC86F9D0B90B9B08D1256B4EF76354B" —— "h3r3"
-然后判断第13位是否等于'!'
-接下来从第14位开始，将前(13+i)位字符做异或运算，与目标字符比较
-</code></pre></div></div>
-
-<p>Note: 这里有个问题就是，第二个MD5没搜到结果，本来想写脚本爆破，但是成本太高
-    就按flag的套路猜了一下，第二组字符可能是”<em>is</em>”
-    于是试了”<em>1s</em>”, “<em>1S</em>”, “<em>i5</em>“(bingo!)
-    (这里本来还想是不是个假flag，第二组字符可能包含”not”，后来发现想多了= =)</p>
-
-<p>程序逻辑很简单，理清就可以写脚本了</p>
-
-<p>python脚本：</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">secret</span><span class="o">=</span><span class="p">[</span><span class="mh">0x7D</span><span class="p">,</span><span class="mh">0x4D</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mh">0x44</span><span class="p">,</span><span class="mh">0x36</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0x03</span><span class="p">,</span><span class="mh">0x6F</span><span class="p">,</span><span class="mh">0x5B</span><span class="p">,</span><span class="mh">0x2F</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x39</span><span class="p">]</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="s">'fl4g_i5_h3r3!'</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">secret</span><span class="p">)):</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">secret</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">13</span><span class="p">):</span>
-        <span class="n">c</span> <span class="o">^=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">flag</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-    <span class="n">flag</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s">"ISITDTU{"</span> <span class="o">+</span> <span class="n">flag</span> <span class="o">+</span> <span class="s">"}"</span><span class="p">)</span>
-</code></pre></div></div>
 <hr />
 
-<h4 id="inter">Inter</h4>
+<h1>KKNPP遭受攻击事件时间线</h1>
 
-<blockquote>
-  <p>(14th) PE32 executable (console)
-windows named pipe</p>
-</blockquote>
+<p>2019年10月28日，有用户在twitter上披露了上传到VT的一个样本，指出其中使用SMB将收集的数据共享到一个内网地址，并且用户名为KKNPP。KKNPP是Kudankulam Nuclear Power Plant，即库丹库拉姆核电站的简称，该样本的披露引发了热议。</p>
 
-<p>把inter.exe丢进OD，发现对__stdio_common_vfscanf的调用
-在此处下断点，然后运行，提示：
-    <code class="highlighter-rouge">"Please give me 5 numbers to get the flag:"</code></p>
+<p>随后，印度威胁情报分析师Pukhraj Singh转发推文确认，称发生了对KKNPP的“域控级别的访问”，此次攻击发生于2019年9月份，印度政府已知悉此事。</p>
 
-<p>可以据此找到关键(?)函数1 sub_4015C0</p>
+<amp-img src="/assets/images/kknpp2019/image1.png" layout="responsive" alt="" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image2.png" layout="responsive" alt="" class="mb3"></amp-img>
+<p>图 1 1 图片示意说明</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
-CreateFileW("\\.\pipe\LogPipe", ...)
-...
-while(1){
-    sub_401050() // read input
-    ...
-    wsprintfA
-    ...
-    WriteFile
-    ...
-    ReadFile
-    ...
-    ++i
-    if(i &gt;= 5) goto print_flag
-}
-...
-</code></pre></div></div>
+<p>NPCIL10月29日发布的声明否认了KKNPP遭受攻击，并称“KKNPP与其他核电站控制系统是独立的，没有连接到互联网，任何针对核电站控制系统的网络攻击是不可能的。现在KKNPP Unit-1 &amp; 2运行良好。”该声明只否认了核电站控制系统遭受攻击，未对核电站内其他系统的安全性进行说明。</p>
+<p>随后，在10月30日，NPCIL重新发布声明，确认NPCIL系统中存在恶意软件，在2019年9月4日由印度CERT告知此事，并开展调查。调查结果显示受感染的电脑为管理用途，该电脑与关键内部网络隔离，核电系统未受影响。</p>
 
-<p>再加上对CreateNamedPipeW和CreateThread的调用，
-可以发现这是个windows命名管道客户端
-向服务端传递5个数字，如果服务端均返回 “1”，验证通过，print flag</p>
+<amp-img src="/assets/images/kknpp2019/image3.png" layout="responsive" alt="NPCIL发布的声明1" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image4.png" layout="responsive" alt="NPCIL发布的声明2" class="mb3"></amp-img>
+<p>图 1 2 NPCIL发布的声明</p>
 
-<p>对ReadFile下断点，可以找到服务端逻辑在loc_401340
-(这部分IDA没识别出来代码，需要手动)
-然后就可以读汇编啦(…)</p>
+<hr />
 
-<p>先是根据输入字符串得到v1和v2，v1是对输入做atoi，v2则是每位上的数字之和，
-然后验证：</p>
+<h1>相关样本分析</h1>
+<h2>Dtrack Dropper</h2>
+<p>表 2 1样本标签</p>
+<table>
+    <tr>
+        <td>MD5</td>
+        <td>文件类型</td>
+        <td>文件大小</td>
+    </tr>
+    <tr>
+        <td>b7c3039203278bc289fd3756571bd468</td>
+        <td>PE32 Executable</td>
+        <td>1400KB</td>
+    </tr>
+    <tr>
+        <td>4f8091a5513659b2980cb53578d3f798</td>
+        <td>PE32 Executable</td>
+        <td>820KB</td>
+    </tr>
+</table>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Five numbers total:
-1st: input ^ 0x1e1e1e1e == 0x672E6B41
-2nd: 0x23除input取余，相当于计算input的0x23进制形式，
-     从高位到低位顺序为: 1f, 21, 0c, 0d, 18, 1f
-3rd: (input + 0x21) ^ 0x0CAFEBABE == 0x0A8CAD9EF
-4th: MD5比较: 
-     MD5(input) == 'e861a6e17bd11a7cec8b6c8514728d2b'
-5th: (input + 0x2d) ^ 0x0CAFACADA == 0x0FB94F394
-</code></pre></div></div>
+<h3>Dropper</h3>
+<p>该Dropper程序是一个空壳程序，主要用于解密执行payload。Dropper程序在调用start()函数进行初始化时，调用execute_payload函数。execute_payload函数首先为payload分配内存，从当前可执行文件的特定偏移处读取数据到分配的内存中，数据偏移与数据长度存放在MS-DOS头部未使用的字段中，分别为文件头偏移的0x20和0x28；然后解密数据，得到第一阶段的shellcode。</p>
 
-<p>(v2只是写脚本的时候拿来验证结果)</p>
+<amp-img src="/assets/images/kknpp2019/image5.png" layout="responsive" alt="执行payload函数位于CRTStartup过程中" class="mb3"></amp-img>
+<p>图 2 1 执行payload函数位于CRTStartup过程中</p>
 
-<p>print flag的时候就直接 <code class="highlighter-rouge">printf("%s", (char*)&amp;input)</code>  (注意一下大小端)</p>
+<amp-img src="/assets/images/kknpp2019/image6.png" layout="responsive" alt="第一阶段shellcode" class="mb3"></amp-img>
+<p>图 2 2 第一阶段shellcode</p>
 
-<p>总体来说这题简单
-主要是没认出来是pipe，中间卡了几个小时……(还是菜 <em>(:з」∠)</em>)</p>
+<p>第一阶段shellcode重复execute_payload函数过程，数据与长度偏移分别位于文件头的0x2c和0x30处，解密得到第二阶段数据，可以看到第二阶段数据为一个完整的可执行文件，shellcode读取PE头部信息，跳转到程序入口点开始执行。将该可执行文件dump后计算其MD5值，为4f8091a5513659b2980cb53578d3f798，即twitter用户此次披露的样本。</p>
 
-<p>python脚本：</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num1</span> <span class="o">=</span> <span class="mh">0x672E6B41</span> <span class="o">^</span> <span class="mh">0x1e1e1e1e</span>
+<amp-img src="/assets/images/kknpp2019/image7.png" layout="responsive" alt="第二阶段解密的数据" class="mb3"></amp-img>
+<p>图 2 3 第二阶段解密的数据</p>
+<p>查看execute_payload函数的引用，发现整个程序内共有60处对该函数的引用，且大多位于系统函数内，恶意软件作者通过这种方式进行隐藏，并能够保证嵌入的代码被执行。</p>
 
-<span class="n">mods</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x1f</span><span class="p">,</span> <span class="mh">0x21</span><span class="p">,</span> <span class="mh">0x0c</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x18</span><span class="p">,</span> <span class="mh">0x1f</span><span class="p">]</span>
-<span class="n">mods</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-<span class="n">num2</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mods</span><span class="p">)):</span>
-    <span class="n">num2</span> <span class="o">*=</span> <span class="mh">0x23</span>
-    <span class="n">num2</span> <span class="o">+=</span> <span class="n">mods</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<amp-img src="/assets/images/kknpp2019/image8.png" layout="responsive" alt="函数引用" class="mb3"></amp-img>
+<p>图 2 4 函数引用</p>
 
-<span class="n">num3</span> <span class="o">=</span> <span class="mh">0x0A8CAD9EF</span>
-<span class="n">num3</span> <span class="o">^=</span> <span class="mh">0x0CAFEBABE</span>
-<span class="n">num3</span> <span class="o">-=</span> <span class="mh">0x21</span>
-<span class="n">num3</span> <span class="o">&amp;=</span> <span class="mh">0xffffffff</span>
-    
-<span class="c"># md5(num4) = e861a6e17bd11a7cec8b6c8514728d2b</span>
-<span class="n">num4</span> <span class="o">=</span> <span class="mi">1835360107</span>
-    
-<span class="n">num5</span> <span class="o">=</span> <span class="mh">0x0FB94F394</span>
-<span class="n">num5</span> <span class="o">^=</span> <span class="mh">0x0CAFACADA</span>
-<span class="n">num5</span> <span class="o">-=</span> <span class="mh">0x2d</span>
-<span class="n">num5</span> <span class="o">&amp;=</span> <span class="mh">0xffffffff</span>
-    
-<span class="n">flag</span> <span class="o">=</span> <span class="s">''</span>
-<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="p">[</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">,</span> <span class="n">num3</span><span class="p">,</span> <span class="n">num4</span><span class="p">,</span> <span class="n">num5</span><span class="p">]:</span>
-    <span class="n">num</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="n">num</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="n">flag</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="mi">16</span><span class="p">))</span>
-    
-<span class="k">print</span><span class="p">(</span><span class="s">"ISITDTU{"</span> <span class="o">+</span> <span class="n">flag</span> <span class="o">+</span> <span class="s">"}"</span><span class="p">)</span>
-</code></pre></div></div>
+<h3>Payload</h3>
 
+<p>该payload主要用于从被感染机器中收集信息并回传给攻击者控制的主机。</p>
+
+<p>程序首先使用LoadLibraryA和GetProcAddress API获取所需的API地址，其中，获取API字符串的方法与卡巴斯基报告中Dtrack使用的方法相同，如图2-5所示。如果字符串以”CCS_”开始，则其后为目标字符串；否则，第一个字节为密钥，依次与其后的字节异或得到目标字符串。</p>
+
+<amp-img src="/assets/images/kknpp2019/image9.png" layout="responsive" alt="字符串获取函数，卡巴斯基报告" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image10.png" layout="responsive" alt="字符串获取函数，此次Dtrack样本" class="mb3"></amp-img>
+<p>图 2 5 字符串获取函数，上图为卡巴斯基报告，下图为此次Dtrack样本</p>
+
+<p>然后程序通过注册表查询感染主机的RegisteredOwner、RegisteredOrganization以及InstallDate，获取设备MAC地址，使用这些信息计算生成8位设备指纹。</p>
+
+<amp-img src="/assets/images/kknpp2019/image11.png" layout="responsive" alt="查询注册表" class="mb3"></amp-img>
+<p>图 2 6 查询注册表</p>
+
+<amp-img src="/assets/images/kknpp2019/image12.png" layout="responsive" alt="计算设备指纹" class="mb3"></amp-img>
+<p>图 2 7 计算设备指纹</p>
+
+<p>之后，程序在%TEMP%目录下创建temp文件夹以及temp[ip]文件夹，[ip]为程序获取的本机IP；收集感染主机的IP、进程、端口等信息分别记录到%TEMP%\temp目录下的res.ip等文件中，并收集火狐和Chrome浏览器的历史记录写入browser.his文件中；然后尝试连接172.22.22.156，10.2.114.1，172.22.22.5，10.2.4.1四个地址的80端口，并记录能够成功连接的IP和端口。</p>
+
+<amp-img src="/assets/images/kknpp2019/image13.png" layout="responsive" alt="payload收集的部分信息" class="mb3"></amp-img>
+<p>图 2 8 payload收集的部分信息</p>
+
+<p>接下来，程序收集所有磁盘下的目录及文件信息，加密压缩后写入到%TEMP%\temp[ip]目录下的<em>.tmp（</em>为磁盘盘符）文件中，压缩密码为“dkwero38oerA^t@#”；将%TEMP%\temp目录下所有文件加密压缩后写入%TEMP%~<em>MT.tmp（</em>为8位设备指纹）文件中，压缩密码为“abcd@123”；最后，删除%TEMP%\temp目录下所有文件，将最终文件通过SMB发送到静态编码的10.38.1.35（用户名为KKNPP\administrator，密码为su.controller5kk）的C:\Windows\Temp\MpLogs\目录下，并退出程序。</p>
+
+<amp-img src="/assets/images/kknpp2019/image14.png" layout="responsive" alt="通过SMB传输最终文件" class="mb3"></amp-img>
+<p>图 2 9 通过SMB传输最终文件</p>
+
+<h2>Dtrack RAT</h2>
+<p>2.2	
+表 2 2样本标签</p>
+<table>
+    <tr>
+        <td>MD5</td>
+        <td>文件类型</td>
+        <td>文件大小</td>
+    </tr>
+    <tr>
+        <td>ebb52f45ff1483e82ff3258b7f086571</td>
+        <td>PE32 Executable</td>
+        <td>208KB</td>
+    </tr>
+    <tr>
+        <td>acd7aafa65d0dc4bdb5f04940107087b</td>
+        <td>PE32 Executable</td>
+        <td>184KB</td>
+    </tr>
+    <tr>
+        <td>d10781f6b0a420ba0a9addfa5411fd97</td>
+        <td>PE32 Executable</td>
+        <td>208KB</td>
+    </tr>
+</table>
+
+<p>三个样本均为与此次攻击相关的样本，且功能类似，在此以第一个样本为例进行分析，MD5为acd7aafa65d0dc4bdb5f04940107087b。该样本的主要功能为从C2地址接收命令执行。样本中遗留了大量日志信息，日志文件为%TEMP%\ Execute_ 0116ad.log，并且包含大量加密字符串，解密时使用“rcmgmg3ny3pa”作为种子。</p>
+
+<amp-img src="/assets/images/kknpp2019/image15.png" layout="responsive" alt="样本中的日志信息" class="mb3"></amp-img>
+<p>图 2 10 样本中的日志信息</p>
+<p>程序首先重新定义API，解密API字符串，使用LoadLibrary和GetProcAddress API获取API地址。然后创建名为Global\opr7e5WVfX的互斥量，设置DACL保护进程，判断当前用户权限，最后通过CreateThread创建两个线程，分别为主线程和用于持久化的起始线程，其中起始线程根据设置，有多种持久化方式，每隔1小时运行一次。</p>
+
+<amp-img src="/assets/images/kknpp2019/image16.png" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
+<p>图 2 11 解密API字符串并获取API地址</p>
+<p>主线程为该RAT的主体部分。首先进行初始化工作，计算设备指纹，计算方法与MD5为4f8091a5513659b2980cb53578d3f798的payload相同；然后获取被感染主机IP地址，解密C2 URL，从%TEMP%目录下的eventib216.tmp和eventib217.tmp文件中读取初始的C2命令。</p>
+
+<amp-img src="/assets/images/kknpp2019/image17.png" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
+<p>图 2 12 样本中静态编码的C2 URL</p>
+
+<p>对于每个C2 URL，主线程检查网页扩展名是否为.php，.jsp，.asp中的一个，如果不是，则通过其他算法获取C2 URL；然后从C2下载命令并解密，如果为新的命令，将命令写入eventib216.tmp和eventib217.tmp文件中，并执行相应动作。该样本中包含的C2命令如表2-3所示，与卡巴斯基报告中提及的Dtrack指令相同。</p>
+<p>表 2 3 C2命令说明</p>
+<table>
+    <tr>
+        <td>命令</td>
+        <td>描述</td>
+    </tr>
+    <tr>
+        <td>1003</td>
+        <td>下载文件到被感染主机</td>
+    </tr>
+    <tr>
+        <td>1005</td>
+        <td>通过多种方式进行持久化</td>
+    </tr>
+    <tr>
+        <td>1006</td>
+        <td>上传文件</td>
+    </tr>
+    <tr>
+        <td>1007</td>
+        <td>收集所有磁盘上的文件信息</td>
+    </tr>
+    <tr>
+        <td>1008</td>
+        <td>收集指定磁盘上的文件信息</td>
+    </tr>
+    <tr>
+        <td>1018</td>
+        <td>设定新的进程睡眠间隔</td>
+    </tr>
+    <tr>
+        <td>1023</td>
+        <td>清除所有痕迹</td>
+    </tr>
+    <tr>
+        <td>默认</td>
+        <td>执行指定命令</td>
+    </tr>
+</table>
+
+<amp-img src="/assets/images/kknpp2019/image18.png" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
+<p>图 2 13 卡巴斯基报告中的Dtrack C2命令
+2.3	小结</p>
+<p>卡巴斯基对Dtrack Dropper的描述：“该dropper程序的加密payload嵌入在PE文件中，作为额外数据，而这些额外数据在正常执行过程中永远不会被用到。作为可执行文件的补丁，其解密程序在start()函数中，在WinMain()函数被调用之前开始。恶意软件作者将恶意代码嵌入到无害的可执行程序中，这些可执行程序可能是默认的Visual Studio MFC程序，也可能是其他程序。”经过分析，该dropper程序与卡巴斯基描述的Dtrack Dropper相似性极高，另外，payload中使用的获取字符串的函数与卡巴斯基报告中指出的函数完全相同，因此基本可以认为二者来自同一家族。</p>
+<p>此外，Dtrack RAT中使用的计算指纹、收集磁盘文件信息等函数与2.1中的payload基本相同；C2命令与卡巴斯基报告中提及的Dtrack指令相同，基本可以认为多个样本来自同一组织。</p>
 
     </div>
 
@@ -2802,56 +2833,30 @@ while(1){
                     
                     
                       
-                    
+                        
                       
                     
                       
                         
                           
                           
-                            <h3 class="ampstart-heading h4 m0 mb3"><b>tjctf 2018 WP</b></h3>
+                            <h3 class="ampstart-heading h4 m0 mb3"><b>sidewinder analysis</b></h3>
                             <p class="line-height-4 mb3">
                             
-                              #### Validator(30p) > I found a flag validation program. Do what you want with it....
+                              2019年4月份样本 分析时间：2019年7月 样本分析 样本标签 样本共包括四个攻击载荷，分别是sample.docx，main.rtf，final.hta以及Duser.dll。 攻击载荷 sample.docx 攻击者通过钓鱼邮件投递sample.docx文档。该文档是一个掩饰文档，打开文档后会触发CVE-2017-0199，从远程地址下载main.RTF文件并执行。解压文档可以看到文档中包含外部恶意链接hTtp://www.punjabpolice.gov.pk.standingoperatingprocedureforemergencythreat.cdn-in[.]net/images/5491E413/-1/7384/89dfd89e/main.RTF（该链接已失效）。 main.RTF main.RTF运行后会触发CVE-2017-11882。从main.RTF中提取objdata，图中“BA 36”开始的内容是FontName字段，直到NULL刚好48字节，0x4226B4即为覆盖的返回地址。此段内容是一段shellcode，用于执行远程hta文件http://cdn-in[.]net/includes/b7199e61/-1/7384/35955a61/final（以下称为final.hta，链接已失效）。 使用调试器attach到EQNEDT32.EXE，定位到shellcode执行位置。溢出发生在函数sub_41160F内，执行到函数结束（0x411874）时，函数返回地址已被覆盖为0x4226B4，该地址指向ret指令，通过两次返回跳转到0x18F354，即shellcode。 shellcode首先调用GlobalLock和OleUninitialize函数，然后获取并调用GetCommandLineW，得到当前命令行；接下来，对objdata中的字符串异或解密得到远程文件地址替换命令行；最后加载mshtml库，获取RunHTMLApplication函数地址并调用，运行final.hta。 final.hta final.hta文件中是一段js代码，用于将credwiz.exe复制到C:\ProgramData\drvr\srvc2.0\目录下，并将Duser.dll释放到同一目录下。代码首先对一段字符串进行base64解码，然后进行反序列化，最后调用实例o中的work函数。查看解码后的内容发现，解码后的内容中包含一个pe文件，如图所示。将pe文件dump出来，发现这是一个.net编译的名为PreBotHta.dll的dll文件。...
                             
                             </p>
-                            <a href="/tjctf-2018-rev-wp-part" class="ampstart-rekated-article-readmore block text-decoration-none ampstart-label">Read more</a>
+                            <a href="/sidewinder-201904" class="ampstart-rekated-article-readmore block text-decoration-none ampstart-label">Read more</a>
                           
                         
                       
                     
                       
-                        
-                          
-                          
-                            <h3 class="ampstart-heading h4 m0 mb3"><b>护网杯 2018 rerere WP</b></h3>
-                            <p class="line-height-4 mb3">
-                            
-                              比较烦的一道题 先运行看看： D:\CTF\CTFs\huwangbei\rerere>.\task_huwang-refinal-7.exe .\task_huwang-refinal-7.exe hash D:\CTF\CTFs\huwangbei\rerere>.\task_huwang-refinal-7.exe 12346 No! You are Wrong 需要在命令行传入一个hash值。 用IDA打开，找到引用字符串`No! You are...
-                            
-                            </p>
-                            <a href="/huwangbei-2018-rerere-WP" class="ampstart-rekated-article-readmore block text-decoration-none ampstart-label">Read more</a>
-                          
-                        
+                    
                       
                     
                       
-                        
-                          
-                          
-                            <h3 class="ampstart-heading h4 m0 mb3"><b>WhiteHat 2018 WP</b></h3>
-                            <p class="line-height-4 mb3">
-                            
-                              #### re01 > No hint. > WriteUp: This challenge is pretty straight forward asks for...
-                            
-                            </p>
-                            <a href="/WhiteHat-Grand-Prix-2018-RE-writeup" class="ampstart-rekated-article-readmore block text-decoration-none ampstart-label">Read more</a>
-                          
-                        
-                      
                     
-                      
-                        
                       
                     
                       
