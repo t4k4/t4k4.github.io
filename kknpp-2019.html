@@ -2647,15 +2647,15 @@ body > figure > figcaption > header > h2 {
 
 <p>随后，印度威胁情报分析师Pukhraj Singh转发推文确认，称发生了对KKNPP的“域控级别的访问”，此次攻击发生于2019年9月份，印度政府已知悉此事。</p>
 
-<amp-img src="/assets/images/kknpp2019/image1.png" layout="responsive" alt="" class="mb3"></amp-img>
-<amp-img src="/assets/images/kknpp2019/image2.png" layout="responsive" alt="" class="mb3"></amp-img>
-<p>图 1 1 图片示意说明</p>
+<amp-img src="/assets/images/kknpp2019/image1.png" width="588" height="593" layout="responsive" alt="" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image2.png" width="476" height="562" layout="responsive" alt="" class="mb3"></amp-img>
+<p>图 1 1</p>
 
 <p>NPCIL10月29日发布的声明否认了KKNPP遭受攻击，并称“KKNPP与其他核电站控制系统是独立的，没有连接到互联网，任何针对核电站控制系统的网络攻击是不可能的。现在KKNPP Unit-1 &amp; 2运行良好。”该声明只否认了核电站控制系统遭受攻击，未对核电站内其他系统的安全性进行说明。</p>
 <p>随后，在10月30日，NPCIL重新发布声明，确认NPCIL系统中存在恶意软件，在2019年9月4日由印度CERT告知此事，并开展调查。调查结果显示受感染的电脑为管理用途，该电脑与关键内部网络隔离，核电系统未受影响。</p>
 
-<amp-img src="/assets/images/kknpp2019/image3.png" layout="responsive" alt="NPCIL发布的声明1" class="mb3"></amp-img>
-<amp-img src="/assets/images/kknpp2019/image4.png" layout="responsive" alt="NPCIL发布的声明2" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image3.png" width="728" height="600" layout="responsive" alt="NPCIL发布的声明1" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image4.png" width="547" height="704" layout="responsive" alt="NPCIL发布的声明2" class="mb3"></amp-img>
 <p>图 1 2 NPCIL发布的声明</p>
 
 <hr />
@@ -2684,19 +2684,19 @@ body > figure > figcaption > header > h2 {
 <h3>Dropper</h3>
 <p>该Dropper程序是一个空壳程序，主要用于解密执行payload。Dropper程序在调用start()函数进行初始化时，调用execute_payload函数。execute_payload函数首先为payload分配内存，从当前可执行文件的特定偏移处读取数据到分配的内存中，数据偏移与数据长度存放在MS-DOS头部未使用的字段中，分别为文件头偏移的0x20和0x28；然后解密数据，得到第一阶段的shellcode。</p>
 
-<amp-img src="/assets/images/kknpp2019/image5.png" layout="responsive" alt="执行payload函数位于CRTStartup过程中" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image5.png" width="739" height="259" layout="responsive" alt="执行payload函数位于CRTStartup过程中" class="mb3"></amp-img>
 <p>图 2 1 执行payload函数位于CRTStartup过程中</p>
 
-<amp-img src="/assets/images/kknpp2019/image6.png" layout="responsive" alt="第一阶段shellcode" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image6.png" width="872" height="253" layout="responsive" alt="第一阶段shellcode" class="mb3"></amp-img>
 <p>图 2 2 第一阶段shellcode</p>
 
 <p>第一阶段shellcode重复execute_payload函数过程，数据与长度偏移分别位于文件头的0x2c和0x30处，解密得到第二阶段数据，可以看到第二阶段数据为一个完整的可执行文件，shellcode读取PE头部信息，跳转到程序入口点开始执行。将该可执行文件dump后计算其MD5值，为4f8091a5513659b2980cb53578d3f798，即twitter用户此次披露的样本。</p>
 
-<amp-img src="/assets/images/kknpp2019/image7.png" layout="responsive" alt="第二阶段解密的数据" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image7.png" width="915" height="272" layout="responsive" alt="第二阶段解密的数据" class="mb3"></amp-img>
 <p>图 2 3 第二阶段解密的数据</p>
 <p>查看execute_payload函数的引用，发现整个程序内共有60处对该函数的引用，且大多位于系统函数内，恶意软件作者通过这种方式进行隐藏，并能够保证嵌入的代码被执行。</p>
 
-<amp-img src="/assets/images/kknpp2019/image8.png" layout="responsive" alt="函数引用" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image8.png" width="715" height="349" layout="responsive" alt="函数引用" class="mb3"></amp-img>
 <p>图 2 4 函数引用</p>
 
 <h3>Payload</h3>
@@ -2705,31 +2705,31 @@ body > figure > figcaption > header > h2 {
 
 <p>程序首先使用LoadLibraryA和GetProcAddress API获取所需的API地址，其中，获取API字符串的方法与卡巴斯基报告中Dtrack使用的方法相同，如图2-5所示。如果字符串以”CCS_”开始，则其后为目标字符串；否则，第一个字节为密钥，依次与其后的字节异或得到目标字符串。</p>
 
-<amp-img src="/assets/images/kknpp2019/image9.png" layout="responsive" alt="字符串获取函数，卡巴斯基报告" class="mb3"></amp-img>
-<amp-img src="/assets/images/kknpp2019/image10.png" layout="responsive" alt="字符串获取函数，此次Dtrack样本" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image9.png" width="662" height="515" layout="responsive" alt="字符串获取函数，卡巴斯基报告" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image10.png" width="405" height="455" layout="responsive" alt="字符串获取函数，此次Dtrack样本" class="mb3"></amp-img>
 <p>图 2 5 字符串获取函数，上图为卡巴斯基报告，下图为此次Dtrack样本</p>
 
 <p>然后程序通过注册表查询感染主机的RegisteredOwner、RegisteredOrganization以及InstallDate，获取设备MAC地址，使用这些信息计算生成8位设备指纹。</p>
 
-<amp-img src="/assets/images/kknpp2019/image11.png" layout="responsive" alt="查询注册表" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image11.png" width="871" height="317" layout="responsive" alt="查询注册表" class="mb3"></amp-img>
 <p>图 2 6 查询注册表</p>
 
-<amp-img src="/assets/images/kknpp2019/image12.png" layout="responsive" alt="计算设备指纹" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image12.png" width="545" height="467" layout="responsive" alt="计算设备指纹" class="mb3"></amp-img>
 <p>图 2 7 计算设备指纹</p>
 
 <p>之后，程序在%TEMP%目录下创建temp文件夹以及temp[ip]文件夹，[ip]为程序获取的本机IP；收集感染主机的IP、进程、端口等信息分别记录到%TEMP%\temp目录下的res.ip等文件中，并收集火狐和Chrome浏览器的历史记录写入browser.his文件中；然后尝试连接172.22.22.156，10.2.114.1，172.22.22.5，10.2.4.1四个地址的80端口，并记录能够成功连接的IP和端口。</p>
 
-<amp-img src="/assets/images/kknpp2019/image13.png" layout="responsive" alt="payload收集的部分信息" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image13.png" width="523" height="137" layout="responsive" alt="payload收集的部分信息" class="mb3"></amp-img>
 <p>图 2 8 payload收集的部分信息</p>
 
 <p>接下来，程序收集所有磁盘下的目录及文件信息，加密压缩后写入到%TEMP%\temp[ip]目录下的<em>.tmp（</em>为磁盘盘符）文件中，压缩密码为“dkwero38oerA^t@#”；将%TEMP%\temp目录下所有文件加密压缩后写入%TEMP%~<em>MT.tmp（</em>为8位设备指纹）文件中，压缩密码为“abcd@123”；最后，删除%TEMP%\temp目录下所有文件，将最终文件通过SMB发送到静态编码的10.38.1.35（用户名为KKNPP\administrator，密码为su.controller5kk）的C:\Windows\Temp\MpLogs\目录下，并退出程序。</p>
 
-<amp-img src="/assets/images/kknpp2019/image14.png" layout="responsive" alt="通过SMB传输最终文件" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image14.png" width="843" height="244" layout="responsive" alt="通过SMB传输最终文件" class="mb3"></amp-img>
 <p>图 2 9 通过SMB传输最终文件</p>
 
 <h2>Dtrack RAT</h2>
-<p>2.2	
-表 2 2样本标签</p>
+
+<p>表 2 2样本标签</p>
 <table>
     <tr>
         <td>MD5</td>
@@ -2755,15 +2755,15 @@ body > figure > figcaption > header > h2 {
 
 <p>三个样本均为与此次攻击相关的样本，且功能类似，在此以第一个样本为例进行分析，MD5为acd7aafa65d0dc4bdb5f04940107087b。该样本的主要功能为从C2地址接收命令执行。样本中遗留了大量日志信息，日志文件为%TEMP%\ Execute_ 0116ad.log，并且包含大量加密字符串，解密时使用“rcmgmg3ny3pa”作为种子。</p>
 
-<amp-img src="/assets/images/kknpp2019/image15.png" layout="responsive" alt="样本中的日志信息" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image15.png" width="480" height="317" layout="responsive" alt="样本中的日志信息" class="mb3"></amp-img>
 <p>图 2 10 样本中的日志信息</p>
 <p>程序首先重新定义API，解密API字符串，使用LoadLibrary和GetProcAddress API获取API地址。然后创建名为Global\opr7e5WVfX的互斥量，设置DACL保护进程，判断当前用户权限，最后通过CreateThread创建两个线程，分别为主线程和用于持久化的起始线程，其中起始线程根据设置，有多种持久化方式，每隔1小时运行一次。</p>
 
-<amp-img src="/assets/images/kknpp2019/image16.png" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image16.png" width="528" height="301" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
 <p>图 2 11 解密API字符串并获取API地址</p>
 <p>主线程为该RAT的主体部分。首先进行初始化工作，计算设备指纹，计算方法与MD5为4f8091a5513659b2980cb53578d3f798的payload相同；然后获取被感染主机IP地址，解密C2 URL，从%TEMP%目录下的eventib216.tmp和eventib217.tmp文件中读取初始的C2命令。</p>
 
-<amp-img src="/assets/images/kknpp2019/image17.png" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image17.png" width="741" height="94" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
 <p>图 2 12 样本中静态编码的C2 URL</p>
 
 <p>对于每个C2 URL，主线程检查网页扩展名是否为.php，.jsp，.asp中的一个，如果不是，则通过其他算法获取C2 URL；然后从C2下载命令并解密，如果为新的命令，将命令写入eventib216.tmp和eventib217.tmp文件中，并执行相应动作。该样本中包含的C2命令如表2-3所示，与卡巴斯基报告中提及的Dtrack指令相同。</p>
@@ -2807,7 +2807,7 @@ body > figure > figcaption > header > h2 {
     </tr>
 </table>
 
-<amp-img src="/assets/images/kknpp2019/image18.png" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
+<amp-img src="/assets/images/kknpp2019/image18.png" width="813" height="255" layout="responsive" alt="解密API字符串并获取API地址" class="mb3"></amp-img>
 <p>图 2 13 卡巴斯基报告中的Dtrack C2命令
 2.3	小结</p>
 <p>卡巴斯基对Dtrack Dropper的描述：“该dropper程序的加密payload嵌入在PE文件中，作为额外数据，而这些额外数据在正常执行过程中永远不会被用到。作为可执行文件的补丁，其解密程序在start()函数中，在WinMain()函数被调用之前开始。恶意软件作者将恶意代码嵌入到无害的可执行程序中，这些可执行程序可能是默认的Visual Studio MFC程序，也可能是其他程序。”经过分析，该dropper程序与卡巴斯基描述的Dtrack Dropper相似性极高，另外，payload中使用的获取字符串的函数与卡巴斯基报告中指出的函数完全相同，因此基本可以认为二者来自同一家族。</p>
@@ -2843,7 +2843,7 @@ body > figure > figcaption > header > h2 {
                             <h3 class="ampstart-heading h4 m0 mb3"><b>sidewinder analysis</b></h3>
                             <p class="line-height-4 mb3">
                             
-                              2019年4月份样本 分析时间：2019年7月 样本分析 样本标签 样本共包括四个攻击载荷，分别是sample.docx，main.rtf，final.hta以及Duser.dll。 攻击载荷 sample.docx 攻击者通过钓鱼邮件投递sample.docx文档。该文档是一个掩饰文档，打开文档后会触发CVE-2017-0199，从远程地址下载main.RTF文件并执行。解压文档可以看到文档中包含外部恶意链接hTtp://www.punjabpolice.gov.pk.standingoperatingprocedureforemergencythreat.cdn-in[.]net/images/5491E413/-1/7384/89dfd89e/main.RTF（该链接已失效）。 main.RTF main.RTF运行后会触发CVE-2017-11882。从main.RTF中提取objdata，图中“BA 36”开始的内容是FontName字段，直到NULL刚好48字节，0x4226B4即为覆盖的返回地址。此段内容是一段shellcode，用于执行远程hta文件http://cdn-in[.]net/includes/b7199e61/-1/7384/35955a61/final（以下称为final.hta，链接已失效）。 使用调试器attach到EQNEDT32.EXE，定位到shellcode执行位置。溢出发生在函数sub_41160F内，执行到函数结束（0x411874）时，函数返回地址已被覆盖为0x4226B4，该地址指向ret指令，通过两次返回跳转到0x18F354，即shellcode。 shellcode首先调用GlobalLock和OleUninitialize函数，然后获取并调用GetCommandLineW，得到当前命令行；接下来，对objdata中的字符串异或解密得到远程文件地址替换命令行；最后加载mshtml库，获取RunHTMLApplication函数地址并调用，运行final.hta。 final.hta final.hta文件中是一段js代码，用于将credwiz.exe复制到C:\ProgramData\drvr\srvc2.0\目录下，并将Duser.dll释放到同一目录下。代码首先对一段字符串进行base64解码，然后进行反序列化，最后调用实例o中的work函数。查看解码后的内容发现，解码后的内容中包含一个pe文件，如图所示。将pe文件dump出来，发现这是一个.net编译的名为PreBotHta.dll的dll文件。...
+                              2019年4月份样本 分析时间：2019年7月 样本分析 样本标签 样本共包括四个攻击载荷，分别是sample.docx，main.rtf，final.hta以及Duser.dll。 文件名称 MD5 检测结果 文件大小 文件格式 sample.docx 393497c43c760112714f3bb10f5170d2 Trojan[Exploit]/XML.CVE-2017-0199 13.78 KB...
                             
                             </p>
                             <a href="/sidewinder-201904" class="ampstart-rekated-article-readmore block text-decoration-none ampstart-label">Read more</a>
