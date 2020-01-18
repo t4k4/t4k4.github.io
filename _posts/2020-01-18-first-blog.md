@@ -8,5 +8,5 @@ thumbnail: jekyll
 tags:
 ---
 
-My first Blog.</br>
-Nothing special.</br>
+<p>My first Blog.</p>
+<p>Nothing special.</p>
