@@ -13,4 +13,4 @@ exclude:
 - vendor
 branches:
   only:
-  - master
+  - build-branch

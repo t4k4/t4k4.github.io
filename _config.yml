@@ -52,7 +52,7 @@ safe: False
 lsi: False
 username: t4k4 #github username
 repo: t4k4.github.io #github repository
-branch: master #branch
+branch: build-branch #branch
 relative_source: ../hanuman/ #source directory
 destination: ../hanuman-pages/ #destination directory
 production_url:  https://t4k4.github.io/
