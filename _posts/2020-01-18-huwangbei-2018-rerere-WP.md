@@ -280,5 +280,5 @@ validation_6:
 flag = ''.join(['63b5ea2c', '1F946556', '5F4AC67A', 'AF88CBB2', '6CA51C3D', 'F952FC49'])
 flag = list(flag.upper())
 flag.reverse() # 这里要注意一下，str2hex的时候是反着读的，所以这里要reverse
-print("flag{%s}" % (''.join(flag)))
+print("flag{" + ''.join(flag) +"}")
 ```
