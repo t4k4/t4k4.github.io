@@ -1,11 +1,11 @@
 # Site settings
 title: TAKA
 description: Just wish me a brand new start of the next few years.
-cover: /assets/images/radhakrishna.jpg
+cover: assets/images/radhakrishna.jpg
 #logo: assets/images/logo.png
-logo: /assets/images/logo_bear.png
+logo: assets/images/logo_bear.png
 #favicon: assets/images/favicon.png
-favicon: /assets/images/Image_213449.jpg
+favicon: assets/images/Image_213449.jpg
 baseurl: "/" # the subpath of your site, e.g. /blog/ or / for root
 url: "https://t4k4.github.io/" # the base hostname & protocol for your site
 future: true
