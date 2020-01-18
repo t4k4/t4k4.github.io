@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+- 2.6.3
+install:
+- bundle install
+script: bundle exec rake site:deploy --quiet
+env:
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - secure: HUEqR0DTIjxHk47myEdAP70kMihBHY7gSskl/6tGAxCOBPBLSElhp6ibMvGoT6zsUU43bXN17UuzoPJBLy7nPvRfjZWBSGcHXT8pWb4Iv5Glfujs9zxqTPwMp8xsqCYUxTX2E/S8acJJT7NhJ1jnE0LqShiabyucT/qIb6EDeuE33shsRZVoFT8GkoeXtInDFasgdTq9fMMKvnQhxD2lRCb/O7yuf9macLF/vx2oxVFBNJnkdzvK1MzxhDTapZZlSpnbiJAxKJ1mYlQHKoermVlxvE0djvj+MDn6wG4QNUtNHgSdKis0XzpyJiSIOc98Rl19qO8jkz6U+MLGg56nwpCgGVNGuRIgBIVBsua3ua4ZuCBhPy0WfVYCo7NMRF438lHjVtpz6+3IoaHcNGxKc6Fwv0aEQPTkasgmNhNUhRM1aSW2W7Zcu/+0yWFiDotsW2PuGC9hvk+hjhd0jtWTlveE49dGzt6S8mnFFVUgqzqEn8RQ9aMLo7FLCkFFCkxLHU6fh95PDAsDnAvWaetaAFJ04gJCKfXSVhr9vu4Iqmh0dCj0BE4Hv1UCgtUWey3+0Irk5VJpHkwL+O943hKV8IIwCtkRINwnnOyU9tCXiaZ50QfJM3FGU9N6nUWHyix+R6aM1yrj9sScmbt57Xuerb8XVMZ0PyzUjKEHlkozP6k=
+sudo: false
+exclude:
+- vendor
+branches:
+  only:
+  - master
