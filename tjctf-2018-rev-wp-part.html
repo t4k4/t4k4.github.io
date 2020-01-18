@@ -8,30 +8,33 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1">
   <link rel="shortcut icon" href="https://t4k4.github.io//assets/images/Image_213449.jpg" type="image/png" />
 
-  <title>My First Blog</title>
+  <title>tjctf 2018 WP</title>
 
-  <meta name="description" content="My first Blog.Nothing special.">
+  <meta name="description" content="Validator(30p)  I found a flag validation program. Do what you want with it.">
 
   <meta property="og:site_name" content="TAKA" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="My First Blog" />
+  <meta property="og:title" content="tjctf 2018 WP" />
   <meta property="og:description" content="Just wish me a brand new start of the next few years." />
-  <meta property="og:url" content="https://t4k4.github.io//first-blog" />
+  <meta property="og:url" content="https://t4k4.github.io//tjctf-2018-rev-wp-part" />
   <meta property="og:image" content="https://t4k4.github.io//assets/images/radhakrishna.jpg" />
   <meta property="article:publisher" content="https://www.facebook.com/facebook" />
+  <meta property="article:tag" content="CTF" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="My First Blog" />
+  <meta name="twitter:title" content="tjctf 2018 WP" />
   <meta name="twitter:description" content="Just wish me a brand new start of the next few years." />
   <meta name="twitter:url" content="https://t4k4.github.io//" />
   <meta name="twitter:image" content="https://t4k4.github.io//assets/images/radhakrishna.jpg" />
   <meta name="twitter:label1" content="Written by" />
   <meta name="twitter:data1" content="TAKA" />
+  <meta name="twitter:label2" content="Filed under" />
+  <meta name="twitter:data2" content="CTF" />
   <meta name="twitter:site" content="@twitter" />
   <meta name="twitter:creator" content="@twitter" />
   <meta property="og:image:width" content="2000" />
   <meta property="og:image:height" content="666" />
 
-  <link rel="canonical" href="https://t4k4.github.io//first-blog" />
+  <link rel="canonical" href="https://t4k4.github.io//tjctf-2018-rev-wp-part" />
   <link rel="alternate" type="application/rss+xml" title="TAKA" href="https://t4k4.github.io//feed.xml">
 
   <script type="application/ld+json">
@@ -39,11 +42,11 @@
 {
   "@context": "http://schema.org",
   "@type": "NewsArticle",
-  "mainEntityOfPage": "https://t4k4.github.io//first-blog",
-  "headline": "My First Blog",
-  "datePublished": "2020-01-18T22:14:34+00:00",
-  "dateModified": "2020-01-18T22:14:34+00:00",
-  "description": "My first Blog.Nothing special.",
+  "mainEntityOfPage": "https://t4k4.github.io//tjctf-2018-rev-wp-part",
+  "headline": "tjctf 2018 WP",
+  "datePublished": "2020-01-18T22:59:34+00:00",
+  "dateModified": "2020-01-18T22:59:34+00:00",
+  "description": "Validator(30p)  I found a flag validation program. Do what you want with it.",
   "author": {
     "@type": "Person",
     "name": ""
@@ -2616,7 +2619,23 @@ body > figure > figcaption > header > h2 {
       <article class="recipe-article">
         <header>
           
-          <h1 class="mb1 px3">My First Blog</h1>
+          <span class="ampstart-subtitle block px3 pt2 mb2">
+                        
+                            
+                               <a href='/tags/#CTF'>Ctf</a>,
+                            
+                        
+                            
+                               <a href='/tags/#reverse engineering'>Reverse engineering</a>,
+                            
+                        
+                            
+                               <a href='/tags/#WriteUp'>Writeup</a>
+                            
+                        
+          </span>
+          
+          <h1 class="mb1 px3">tjctf 2018 WP</h1>
 
           <address class="ampstart-byline clearfix mb4 px3 h5">
             <time class="ampstart-byline-pubdate block bold my1" datetime="18 January 2020">18 January 2020</time>
@@ -2626,13 +2645,271 @@ body > figure > figcaption > header > h2 {
   
 
     <div class="px3 mb4">
-      <p>My first Blog.</p>
-<p>Nothing special.</p>
+      <h4 id="validator30p">Validator(30p)</h4>
+<blockquote>
+  <p>I found a flag validation program. Do what you want with it.</p>
+</blockquote>
+
+<p>直接丢进IDA，查看main函数，发现逻辑异常简单:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">strcpy</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="s">"tjctf{ju57_c4ll_m3_r3v3r53_60d_fr0m_n0w_0n}"</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">43</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">BYTE3</span><span class="p">(</span><span class="n">v6</span><span class="p">)</span> <span class="o">=</span> <span class="mi">51</span><span class="p">;</span>
+    <span class="n">LOWORD</span><span class="p">(</span><span class="n">v8</span><span class="p">)</span> <span class="o">=</span> <span class="mi">29235</span><span class="p">;</span>
+    <span class="n">LOBYTE</span><span class="p">(</span><span class="n">v7</span><span class="p">)</span> <span class="o">=</span> <span class="mi">53</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">_WORD</span> <span class="o">*</span><span class="p">)((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v7</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">13170</span><span class="p">;</span>
+    <span class="n">BYTE3</span><span class="p">(</span><span class="n">v7</span><span class="p">)</span> <span class="o">=</span> <span class="mi">118</span><span class="p">;</span> <span class="c1">//以上是更改了s1的几个字符
+</span>    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="p">)</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">"Valid flag."</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">"Invalid flag."</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">"Invalid flag."</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Usage: %s &lt;flag&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">*</span><span class="n">argv</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>可以用<code class="highlighter-rouge">gdb</code>在<code class="highlighter-rouge">strcmp</code>下断点，把<code class="highlighter-rouge">s1</code>dump出来，就可以直接得到flag。
+脚本：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dumped</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x74</span><span class="p">,</span><span class="mh">0x6a</span><span class="p">,</span><span class="mh">0x63</span><span class="p">,</span><span class="mh">0x74</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0x7b</span><span class="p">,</span><span class="mh">0x6a</span><span class="p">,</span><span class="mh">0x75</span><span class="p">,</span><span class="mh">0x35</span><span class="p">,</span><span class="mh">0x37</span><span class="p">,</span>
+        <span class="mh">0x5f</span><span class="p">,</span><span class="mh">0x63</span><span class="p">,</span><span class="mh">0x34</span><span class="p">,</span><span class="mh">0x6c</span><span class="p">,</span><span class="mh">0x6c</span><span class="p">,</span><span class="mh">0x5f</span><span class="p">,</span><span class="mh">0x6d</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mh">0x5f</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span>
+        <span class="mh">0x35</span><span class="p">,</span><span class="mh">0x72</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mh">0x72</span><span class="p">,</span><span class="mh">0x5f</span><span class="p">,</span><span class="mh">0x36</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span><span class="mh">0x64</span><span class="p">,</span>
+        <span class="mh">0x5f</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0x72</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span><span class="mh">0x6d</span><span class="p">,</span><span class="mh">0x5f</span><span class="p">,</span><span class="mh">0x6e</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span><span class="mh">0x77</span><span class="p">,</span><span class="mh">0x5f</span><span class="p">,</span>
+        <span class="mh">0x30</span><span class="p">,</span><span class="mh">0x6e</span><span class="p">,</span><span class="mh">0x7d</span><span class="p">]</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="s">''</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">dumped</span><span class="p">:</span>
+    <span class="n">flag</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="python-reversing40p">Python Reversing(40p)</h4>
+<blockquote>
+  <p>Found this flag checking file and it is quite vulnerable</p>
+</blockquote>
+
+<p>题目直接给了源码，直接对算法逆向即可
+源码：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">flag</span> <span class="o">=</span> <span class="s">'redacted'</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">flag</span><span class="p">])</span>
+<span class="n">other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">flag</span><span class="p">)))</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="n">other</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">]</span>
+<span class="n">lmao</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">'ligma_sugma_sugondese_'</span><span class="o">*</span><span class="mi">5</span><span class="p">])]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="n">lmao</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">b</span><span class="p">)]</span>
+<span class="c"># str的zfill方法只补全不截断</span>
+<span class="k">print</span><span class="p">(</span><span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">c</span><span class="p">))</span>
+
+<span class="c"># original_output was 1001100001011110110100001100001010000011110101001100100011101111110100011111010101010000000110000011101101110000101111101010111011100101000011011010110010100001100010001010101001100001110110100110011101</span>
+</code></pre></div></div>
+<p>这里有个地方要注意，给了长度为202的原始输出，每8位或9位对应原始输入的一个字符，可以根据生成的随机整数(1 or 2 or 3 or 4)判断，如果是3或4，则对应9位，否则对应8位，然后根据输出做调整。
+实际写脚本的时候，只按随机数判断得到的结果出现乱码，但是大部分是正确的，只要调整后面几个字符就可以了。
+脚本：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="s">'1001100001011110110100001100001010000011110101001100100011101111110100011111010101010000000110000011101101110000101111101010111011100101000011011010110010100001100010001010101001100001110110100110011101'</span>
+<span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">//</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">lmao</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">'ligma_sugma_sugondese_'</span><span class="o">*</span><span class="mi">5</span><span class="p">])]</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lengths</span><span class="p">:</span>
+    <span class="n">arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">l</span><span class="p">],</span> <span class="n">base</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="n">l</span>
+
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">lmao</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))]</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">//</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))]</span>
+
+<span class="n">flag</span> <span class="o">=</span> <span class="s">''</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
+    <span class="n">flag</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="bricked-binary80p">Bricked Binary(80p)</h4>
+<blockquote>
+  <p>Earlier, I input my flag to this image and received 22c15d5f23238a8fff8d299f8e5a1c62 as the output. Unfortunately, later on I broke the program and also managed to lose my flag. Can you find it for me?</p>
+</blockquote>
+
+<p>直接丢IDA，发现逻辑同样非常简单……
+关键函数是<code class="highlighter-rouge">hash</code></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="kr">__cdecl</span> <span class="nf">hash</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">result</span><span class="p">;</span> <span class="c1">// eax@3
+</span>  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="c1">// [sp+4h] [bp-14h]@1
+</span>  <span class="kt">signed</span> <span class="kr">__int32</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// [sp+8h] [bp-10h]@1
+</span>
+  <span class="n">v3</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">v3</span> <span class="p">)</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="c1">// 用s[v3 - 1 - i]对数组v做索引，然后与u[i]异或
+</span>    <span class="c1">// 就得到hash(?)后的s[v3 - 1 - i]
+</span>    <span class="c1">// 这里下标需要注意一下
+</span>    <span class="n">s</span><span class="p">[</span><span class="n">v3</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">v</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">s</span><span class="p">[</span><span class="n">v3</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">]];</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>脚本：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x4</span><span class="p">,</span> <span class="mh">0x7</span><span class="p">,</span> <span class="mh">0x5</span><span class="p">,</span> <span class="mh">0x8</span><span class="p">,</span> <span class="mh">0xC</span><span class="p">,</span> <span class="mh">0xA</span><span class="p">,</span> <span class="mh">0x6</span><span class="p">,</span> <span class="mh">0x2</span><span class="p">,</span> <span class="mh">0xD</span><span class="p">,</span> <span class="mh">0x1</span><span class="p">,</span> <span class="mh">0x0</span><span class="p">,</span> <span class="mh">0xE</span><span class="p">,</span> 
+     <span class="mh">0x9</span><span class="p">,</span> <span class="mh">0xB</span><span class="p">,</span><span class="mh">0x3</span><span class="p">,</span> <span class="mh">0xF</span><span class="p">,</span> <span class="mh">0xCA</span><span class="p">,</span> <span class="mh">0xDE</span><span class="p">,</span> <span class="mh">0x14</span><span class="p">,</span> <span class="mh">0x94</span><span class="p">,</span> <span class="mh">0x29</span><span class="p">,</span> <span class="mh">0xE9</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span>
+     <span class="mh">0x4B</span><span class="p">,</span> <span class="mh">0x84</span><span class="p">,</span><span class="mh">0xE4</span><span class="p">,</span> <span class="mh">0xD7</span><span class="p">,</span> <span class="mh">0x3A</span><span class="p">,</span> <span class="mh">0x62</span><span class="p">,</span> <span class="mh">0x3F</span><span class="p">,</span> <span class="mh">0xEF</span><span class="p">,</span> <span class="mh">0xB7</span><span class="p">,</span> <span class="mh">0x7A</span><span class="p">,</span> 
+     <span class="mh">0x9F</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xFD</span><span class="p">,</span> <span class="mh">0x56</span><span class="p">,</span> <span class="mh">0x52</span><span class="p">,</span> <span class="mh">0xB9</span><span class="p">,</span> <span class="mh">0xC7</span><span class="p">,</span> <span class="mh">0x3E</span><span class="p">,</span> <span class="mh">0x5C</span><span class="p">,</span> <span class="mh">0xC4</span><span class="p">,</span> 
+     <span class="mh">0xD5</span><span class="p">,</span> <span class="mh">0xE1</span><span class="p">,</span><span class="mh">0xC9</span><span class="p">,</span> <span class="mh">0x93</span><span class="p">,</span> <span class="mh">0x76</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x88</span><span class="p">,</span> <span class="mh">0xBF</span><span class="p">,</span> <span class="mh">0x67</span><span class="p">,</span> <span class="mh">0xA4</span><span class="p">,</span> 
+     <span class="mh">0xEA</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span> <span class="mh">0xCE</span><span class="p">,</span> <span class="mh">0x98</span><span class="p">,</span> <span class="mh">0xBB</span><span class="p">,</span> <span class="mh">0xAC</span><span class="p">,</span> <span class="mh">0x1C</span><span class="p">,</span> <span class="mh">0xAB</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> 
+     <span class="mh">0x26</span><span class="p">,</span> <span class="mh">0xA6</span><span class="p">,</span><span class="mh">0x83</span><span class="p">,</span> <span class="mh">0xDD</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0x96</span><span class="p">,</span> <span class="mh">0x9D</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x19</span><span class="p">,</span> <span class="mh">0x9C</span><span class="p">,</span> 
+     <span class="mh">0xAF</span><span class="p">,</span> <span class="mh">0x91</span><span class="p">,</span><span class="mh">0xD8</span><span class="p">,</span> <span class="mh">0xAD</span><span class="p">,</span> <span class="mh">0xA5</span><span class="p">,</span> <span class="mh">0xB4</span><span class="p">,</span> <span class="mh">0x71</span><span class="p">,</span> <span class="mh">0xDA</span><span class="p">,</span> <span class="mh">0xF9</span><span class="p">,</span> <span class="mh">0x8C</span><span class="p">,</span> 
+     <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0xA8</span><span class="p">,</span><span class="mh">0x75</span><span class="p">,</span> <span class="mh">0xA7</span><span class="p">,</span> <span class="mh">0x55</span><span class="p">,</span> <span class="mh">0x3B</span><span class="p">,</span> <span class="mh">0xFE</span><span class="p">,</span> <span class="mh">0xE8</span><span class="p">,</span> <span class="mh">0xED</span><span class="p">,</span> <span class="mh">0x61</span><span class="p">,</span> 
+     <span class="mh">0x24</span><span class="p">,</span> <span class="mh">0x95</span><span class="p">,</span><span class="mh">0x54</span><span class="p">,</span> <span class="mh">0x63</span><span class="p">,</span> <span class="mh">0xAE</span><span class="p">,</span> <span class="mh">0x4A</span><span class="p">,</span> <span class="mh">0xDF</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0x36</span><span class="p">,</span> <span class="mh">0xF3</span><span class="p">,</span> 
+     <span class="mh">0x8D</span><span class="p">,</span> <span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x47</span><span class="p">,</span> <span class="mh">0x5D</span><span class="p">,</span> <span class="mh">0x74</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0x6C</span><span class="p">,</span> <span class="mh">0x22</span><span class="p">,</span> <span class="mh">0x69</span><span class="p">,</span> 
+     <span class="mh">0xBE</span><span class="p">,</span> <span class="mh">0xEE</span><span class="p">,</span><span class="mh">0x8A</span><span class="p">,</span> <span class="mh">0x34</span><span class="p">,</span> <span class="mh">0xD3</span><span class="p">,</span> <span class="mh">0x15</span><span class="p">,</span> <span class="mh">0x70</span><span class="p">,</span> <span class="mh">0xBC</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x97</span><span class="p">,</span> 
+     <span class="mh">0xF4</span><span class="p">,</span> <span class="mh">0xE6</span><span class="p">,</span><span class="mh">0xD4</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0xF1</span><span class="p">,</span> <span class="mh">0x79</span><span class="p">,</span> <span class="mh">0xB8</span><span class="p">,</span> <span class="mh">0x73</span><span class="p">,</span> <span class="mh">0xDC</span><span class="p">,</span> <span class="mh">0x35</span><span class="p">,</span> 
+     <span class="mh">0xD2</span><span class="p">,</span> <span class="mh">0xCB</span><span class="p">,</span><span class="mh">0x5F</span><span class="p">,</span> <span class="mh">0x8E</span><span class="p">,</span> <span class="mh">0xC8</span><span class="p">,</span> <span class="mh">0x38</span><span class="p">,</span> <span class="mh">0x32</span><span class="p">,</span> <span class="mh">0xFB</span><span class="p">,</span> <span class="mh">0xFA</span><span class="p">,</span> <span class="mh">0x7B</span><span class="p">,</span> 
+     <span class="mh">0xCD</span><span class="p">,</span> <span class="mh">0x5A</span><span class="p">,</span><span class="mh">0x90</span><span class="p">,</span> <span class="mh">0xA1</span><span class="p">,</span> <span class="mh">0xA3</span><span class="p">,</span> <span class="mh">0x58</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0xB0</span><span class="p">,</span> <span class="mh">0xD9</span><span class="p">,</span> <span class="mh">0xB3</span><span class="p">,</span> 
+     <span class="mh">0x7D</span><span class="p">,</span> <span class="mh">0xEB</span><span class="p">,</span><span class="mh">0xD1</span><span class="p">,</span> <span class="mh">0x78</span><span class="p">,</span> <span class="mh">0xFC</span><span class="p">,</span> <span class="mh">0x86</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span> <span class="mh">0xBD</span><span class="p">,</span> <span class="mh">0x39</span><span class="p">,</span> <span class="mh">0xC2</span><span class="p">,</span> 
+     <span class="mh">0x5E</span><span class="p">,</span> <span class="mh">0xBA</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span> <span class="mh">0x23</span><span class="p">,</span> <span class="mh">0x43</span><span class="p">,</span> <span class="mh">0x28</span><span class="p">,</span> <span class="mh">0xCF</span><span class="p">,</span> <span class="mh">0x6E</span><span class="p">,</span> <span class="mh">0xE5</span><span class="p">,</span> <span class="mh">0x51</span><span class="p">,</span> 
+     <span class="mh">0xDB</span><span class="p">,</span> <span class="mh">0xB5</span><span class="p">,</span><span class="mh">0xA9</span><span class="p">,</span> <span class="mh">0xE7</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x21</span><span class="p">,</span> <span class="mh">0x6A</span><span class="p">,</span> <span class="mh">0xB2</span><span class="p">,</span> <span class="mh">0xF6</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">,</span> 
+     <span class="mh">0xE3</span><span class="p">,</span> <span class="mh">0xE0</span><span class="p">,</span><span class="mh">0x4F</span><span class="p">,</span> <span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0x2B</span><span class="p">,</span> <span class="mh">0x7E</span><span class="p">,</span> <span class="mh">0xA2</span><span class="p">,</span> <span class="mh">0xF5</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> 
+     <span class="mh">0xD6</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x46</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">,</span> <span class="mh">0x9A</span><span class="p">,</span> <span class="mh">0x60</span><span class="p">,</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="mh">0x2D</span><span class="p">,</span> <span class="mh">0x13</span><span class="p">,</span> 
+     <span class="mh">0x1F</span><span class="p">,</span> <span class="mh">0x87</span><span class="p">,</span> <span class="mh">0xCC</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x2C</span><span class="p">,</span> <span class="mh">0xB1</span><span class="p">,</span> <span class="mh">0x57</span><span class="p">,</span> <span class="mh">0x85</span><span class="p">,</span> 
+     <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0xB6</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span><span class="mh">0x82</span><span class="p">,</span> <span class="mh">0x6B</span><span class="p">,</span> <span class="mh">0xC3</span><span class="p">,</span> <span class="mh">0x1B</span><span class="p">,</span> <span class="mh">0x16</span><span class="p">,</span> <span class="mh">0x6F</span><span class="p">,</span> <span class="mh">0x37</span><span class="p">,</span> 
+     <span class="mh">0xE2</span><span class="p">,</span> <span class="mh">0x53</span><span class="p">,</span> <span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x6D</span><span class="p">,</span> <span class="mh">0x4E</span><span class="p">,</span> <span class="mh">0x45</span><span class="p">,</span> <span class="mh">0x64</span><span class="p">,</span> <span class="mh">0x2F</span><span class="p">,</span> <span class="mh">0x72</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> 
+     <span class="mh">0x65</span><span class="p">,</span> <span class="mh">0x7C</span><span class="p">,</span> <span class="mh">0x25</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span><span class="mh">0x49</span><span class="p">,</span> <span class="mh">0xF8</span><span class="p">,</span> <span class="mh">0x3C</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0xAA</span><span class="p">,</span> <span class="mh">0x33</span><span class="p">,</span> 
+     <span class="mh">0x8F</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x68</span><span class="p">,</span> <span class="mh">0x9E</span><span class="p">,</span><span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x3D</span><span class="p">,</span> <span class="mh">0xEC</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0xA0</span><span class="p">,</span> <span class="mh">0x9B</span><span class="p">,</span> 
+     <span class="mh">0x18</span><span class="p">,</span> <span class="mh">0xF2</span><span class="p">,</span> <span class="mh">0x2A</span><span class="p">]</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0xCD</span><span class="p">,</span><span class="mh">0xA</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0xB3</span><span class="p">,</span><span class="mh">0x3B</span><span class="p">,</span><span class="mh">0x32</span><span class="p">,</span><span class="mh">0xB6</span><span class="p">,</span><span class="mh">0x6E</span><span class="p">,</span><span class="mh">0x7C</span><span class="p">,</span>
+     <span class="mh">0x31</span><span class="p">,</span><span class="mh">0x57</span><span class="p">,</span><span class="mh">0xD1</span><span class="p">,</span><span class="mh">0xC5</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x3A</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0xB4</span><span class="p">,</span><span class="mh">0xE2</span><span class="p">,</span><span class="mh">0x51</span><span class="p">,</span>
+     <span class="mh">0x0AE</span><span class="p">,</span><span class="mh">0x42</span><span class="p">,</span><span class="mh">0x55</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0xE1</span><span class="p">,</span><span class="mh">0x70</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x2</span><span class="p">,</span><span class="mh">0x84</span><span class="p">,</span><span class="mh">0xA2</span><span class="p">,</span>
+     <span class="mh">0x0E7</span><span class="p">,</span><span class="mh">0xB9</span><span class="p">,</span><span class="mh">0x4D</span><span class="p">,</span><span class="mh">0x3C</span><span class="p">,</span><span class="mh">0xA3</span><span class="p">,</span><span class="mh">0xB</span><span class="p">,</span><span class="mh">0xB2</span><span class="p">,</span><span class="mh">0x2B</span><span class="p">,</span><span class="mh">0xAB</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span>
+     <span class="mh">0x7E</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="mh">0x9C</span><span class="p">,</span><span class="mh">0x85</span><span class="p">,</span><span class="mh">0x6F</span><span class="p">,</span><span class="mh">0xE4</span><span class="p">,</span><span class="mh">0xC4</span><span class="p">,</span><span class="mh">0x5F</span><span class="p">,</span><span class="mh">0xCE</span><span class="p">,</span><span class="mh">0x4F</span><span class="p">,</span>
+     <span class="mh">0x1</span><span class="p">,</span><span class="mh">0x82</span><span class="p">,</span><span class="mh">0xFD</span><span class="p">,</span><span class="mh">0x6C</span><span class="p">,</span><span class="mh">0xAC</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0x64</span><span class="p">,</span><span class="mh">0xC</span><span class="p">,</span><span class="mh">0xA1</span><span class="p">,</span><span class="mh">0xE3</span><span class="p">,</span>
+     <span class="mh">0x9E</span><span class="p">,</span><span class="mh">0x5D</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0xFE</span><span class="p">,</span><span class="mh">0xD3</span><span class="p">,</span><span class="mh">0x29</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="mh">0xC7</span><span class="p">,</span><span class="mh">0xF3</span><span class="p">,</span><span class="mh">0xFC</span><span class="p">,</span>
+     <span class="mh">0x65</span><span class="p">,</span><span class="mh">0xAA</span><span class="p">,</span><span class="mh">0x8A</span><span class="p">,</span><span class="mh">0x5A</span><span class="p">,</span><span class="mh">0xF5</span><span class="p">,</span><span class="mh">0xB7</span><span class="p">,</span><span class="mh">0x38</span><span class="p">,</span><span class="mh">0xA5</span><span class="p">,</span><span class="mh">0x8D</span><span class="p">,</span><span class="mh">0xD8</span><span class="p">,</span>
+     <span class="mh">0x8E</span><span class="p">,</span><span class="mh">0x39</span><span class="p">,</span><span class="mh">0x7</span><span class="p">,</span><span class="mh">0xDE</span><span class="p">,</span><span class="mh">0xD5</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xE5</span><span class="p">,</span><span class="mh">0x89</span><span class="p">,</span><span class="mh">0x35</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span>
+     <span class="mh">0x0DD</span><span class="p">,</span><span class="mh">0xA6</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mh">0xD</span><span class="p">,</span><span class="mh">0xC0</span><span class="p">,</span><span class="mh">0x93</span><span class="p">,</span><span class="mh">0xC8</span><span class="p">,</span><span class="mh">0x67</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span>
+     <span class="mh">0x68</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x8B</span><span class="p">,</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0xCC</span><span class="p">,</span><span class="mh">0x9D</span><span class="p">,</span><span class="mh">0xDA</span><span class="p">,</span><span class="mh">0x56</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0xC6</span><span class="p">,</span>
+     <span class="mh">0x7F</span><span class="p">,</span><span class="mh">0xE6</span><span class="p">,</span><span class="mh">0x86</span><span class="p">,</span><span class="mh">0xE0</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mh">0xC2</span><span class="p">,</span><span class="mh">0xF</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0xF6</span><span class="p">,</span><span class="mh">0x2D</span><span class="p">,</span>
+     <span class="mh">0x63</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mh">0x91</span><span class="p">,</span><span class="mh">0x71</span><span class="p">,</span><span class="mh">0x59</span><span class="p">,</span><span class="mh">0xEB</span><span class="p">,</span><span class="mh">0xA9</span><span class="p">,</span><span class="mh">0xD2</span><span class="p">,</span><span class="mh">0x83</span><span class="p">,</span><span class="mh">0xBF</span><span class="p">,</span>
+     <span class="mh">0x3D</span><span class="p">,</span><span class="mh">0x6A</span><span class="p">,</span><span class="mh">0x8</span><span class="p">,</span><span class="mh">0xF9</span><span class="p">,</span><span class="mh">0xA7</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0x0</span><span class="p">,</span><span class="mh">0xE8</span><span class="p">,</span><span class="mh">0x52</span><span class="p">,</span><span class="mh">0xBE</span><span class="p">,</span><span class="mh">0xFA</span><span class="p">,</span>
+     <span class="mh">0x4E</span><span class="p">,</span><span class="mh">0x26</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0xCF</span><span class="p">,</span><span class="mh">0x54</span><span class="p">,</span><span class="mh">0x7D</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x6</span><span class="p">,</span><span class="mh">0xF8</span><span class="p">,</span><span class="mh">0xD0</span><span class="p">,</span><span class="mh">0x74</span><span class="p">,</span>
+     <span class="mh">0x28</span><span class="p">,</span><span class="mh">0x5</span><span class="p">,</span><span class="mh">0x3F</span><span class="p">,</span><span class="mh">0xA0</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0xC1</span><span class="p">,</span><span class="mh">0x45</span><span class="p">,</span><span class="mh">0x49</span><span class="p">,</span><span class="mh">0xD4</span><span class="p">,</span><span class="mh">0xAF</span><span class="p">,</span>
+     <span class="mh">0x3</span><span class="p">,</span><span class="mh">0x9B</span><span class="p">,</span><span class="mh">0x2F</span><span class="p">,</span><span class="mh">0xEE</span><span class="p">,</span><span class="mh">0x27</span><span class="p">,</span><span class="mh">0x9A</span><span class="p">,</span><span class="mh">0xA4</span><span class="p">,</span><span class="mh">0x97</span><span class="p">,</span><span class="mh">0x48</span><span class="p">,</span><span class="mh">0x4A</span><span class="p">,</span><span class="mh">0xD9</span><span class="p">,</span>
+     <span class="mh">0x37</span><span class="p">,</span><span class="mh">0x47</span><span class="p">,</span><span class="mh">0xAD</span><span class="p">,</span><span class="mh">0x44</span><span class="p">,</span><span class="mh">0xCA</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0xB8</span><span class="p">,</span><span class="mh">0xDB</span><span class="p">,</span><span class="mh">0xF0</span><span class="p">,</span>
+     <span class="mh">0x9F</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="mh">0x53</span><span class="p">,</span><span class="mh">0xEA</span><span class="p">,</span><span class="mh">0x2A</span><span class="p">,</span><span class="mh">0x7A</span><span class="p">,</span><span class="mh">0x36</span><span class="p">,</span><span class="mh">0x87</span><span class="p">,</span><span class="mh">0x8C</span><span class="p">,</span><span class="mh">0xB5</span><span class="p">,</span>
+     <span class="mh">0x72</span><span class="p">,</span><span class="mh">0x88</span><span class="p">,</span><span class="mh">0xB1</span><span class="p">,</span><span class="mh">0x9</span><span class="p">,</span><span class="mh">0xF1</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0x3E</span><span class="p">,</span><span class="mh">0x69</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0xEC</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span>
+     <span class="mh">0x0BC</span><span class="p">,</span><span class="mh">0xED</span><span class="p">,</span><span class="mh">0xBA</span><span class="p">,</span><span class="mh">0xBD</span><span class="p">,</span><span class="mh">0x2C</span><span class="p">,</span><span class="mh">0xC9</span><span class="p">,</span><span class="mh">0xDC</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0xF4</span><span class="p">,</span>
+     <span class="mh">0x75</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x4B</span><span class="p">,</span><span class="mh">0xC3</span><span class="p">,</span><span class="mh">0x34</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x6B</span><span class="p">,</span><span class="mh">0x77</span><span class="p">,</span><span class="mh">0x98</span><span class="p">,</span><span class="mh">0x5E</span><span class="p">,</span><span class="mh">0x5C</span><span class="p">,</span>
+     <span class="mh">0x99</span><span class="p">,</span><span class="mh">0x8F</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x94</span><span class="p">,</span><span class="mh">0xCB</span><span class="p">,</span><span class="mh">0x2E</span><span class="p">,</span><span class="mh">0x4C</span><span class="p">,</span><span class="mh">0xE9</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span>
+     <span class="mh">0x43</span><span class="p">,</span><span class="mh">0x60</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0x6D</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x78</span><span class="p">,</span><span class="mh">0xE</span><span class="p">,</span><span class="mh">0xB0</span><span class="p">,</span><span class="mh">0xD6</span><span class="p">,</span><span class="mh">0x50</span><span class="p">,</span>
+     <span class="mh">0x79</span><span class="p">,</span><span class="mh">0x7B</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0x95</span><span class="p">,</span><span class="mh">0xA8</span><span class="p">,</span><span class="mh">0x4</span><span class="p">,</span><span class="mh">0x5B</span><span class="p">,</span><span class="mh">0xF2</span><span class="p">,</span><span class="mh">0x90</span><span class="p">,</span><span class="mh">0x21</span><span class="p">]</span>
+
+<span class="n">hashed</span> <span class="o">=</span> <span class="s">'22c15d5f23238a8fff8d299f8e5a1c62'</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">hashed</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hashed</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="n">base</span><span class="o">=</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="n">flag</span> <span class="o">=</span> <span class="s">''</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">j</span> <span class="o">^</span> <span class="n">u</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">flag</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</code></pre></div></div>
 
     </div>
 
     <!-- Start Related article -->
 
+    
+        
+        
+        
+        
+          <section class="ampstart-related-article-section p3 mb4 border-top">
+              <h2 class="ampstart-heading ampstart-label m0 mb3">Related article</h2>
+                <article class="ampstart-related-article">
+                    
+                        
+                        <amp-img src="/assets/images/radhakrishna.jpg" width="656" height="350" layout="responsive" alt="" class="mb3"></amp-img>
+                        
+                    
+                    
+                    
+                      
+                        
+                      
+                    
+                      
+                        
+                          
+                          
+                            <h3 class="ampstart-heading h4 m0 mb3"><b>护网杯 2018 rerere WP</b></h3>
+                            <p class="line-height-4 mb3">
+                            
+                              比较烦的一道题 先运行看看： D:\CTF\CTFs\huwangbei\rerere&gt;.\task_huwang-refinal-7.exe .\task_huwang-refinal-7.exe hash D:\CTF\CTFs\huwangbei\rerere&gt;.\task_huwang-refinal-7.exe 12346 No! You are Wrong 需要在命令行传入一个hash值。 用IDA打开，找到引用字符串No! You are...
+                            
+                            </p>
+                            <a href="/huwangbei-2018-rerere-WP" class="ampstart-rekated-article-readmore block text-decoration-none ampstart-label">Read more</a>
+                          
+                        
+                      
+                    
+                      
+                        
+                          
+                          
+                            <h3 class="ampstart-heading h4 m0 mb3"><b>WhiteHat 2018 WP</b></h3>
+                            <p class="line-height-4 mb3">
+                            
+                              re01 No hint. WriteUp: This challenge is pretty straight forward asks for a key and...
+                            
+                            </p>
+                            <a href="/WhiteHat-Grand-Prix-2018-RE-writeup" class="ampstart-rekated-article-readmore block text-decoration-none ampstart-label">Read more</a>
+                          
+                        
+                      
+                    
+                      
+                        
+                          
+                          
+                            <h3 class="ampstart-heading h4 m0 mb3"><b>ISITDTU CTF 2018 WP</b></h3>
+                            <p class="line-height-4 mb3">
+                            
+                              Cool (3rd) ELF 64-bit executable 运行./cool提示缺少共享库 于是直接丢到IDA里 可以找到几个关键字符串： "Give me your key: " "Wrong~" "Congratulation~~~"...
+                            
+                            </p>
+                            <a href="/ISITDTU-CTF-2018-Reverse-writeup-part" class="ampstart-rekated-article-readmore block text-decoration-none ampstart-label">Read more</a>
+                          
+                        
+                      
+                    
+                      
+                    
+                </article>
+          </section>
+        
     
     <!-- End Related article -->
 <hr>
