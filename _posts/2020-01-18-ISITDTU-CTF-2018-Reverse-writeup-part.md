@@ -49,8 +49,8 @@ for i in range(len(secret)):
     for j in range(i+13):
         c ^= ord(flag[j])
     flag += chr(c)
-    
-print("ISITDTU{%s}" % flag)
+
+print("ISITDTU{" + flag + "}")
 ```
 ---
 
@@ -139,6 +139,6 @@ for num in [num1, num2, num3, num4, num5]:
     for i in range(0, len(num), 2):
         flag += chr(int(num[i:i+2], 16))
     
-print("ISITDTU{%s}" % flag)
+print("ISITDTU{" + flag + "}")
 ```
 
